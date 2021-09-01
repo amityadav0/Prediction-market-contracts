@@ -12,9 +12,9 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "./interfaces/AggregatorV3Interface.sol";
 
 /**
- * @title PancakePredictionV2
+ * @title AvaxPrediction
  */
-contract PancakePredictionV2 is Ownable, Pausable, ReentrancyGuard {
+contract AvaxPrediction is Ownable, Pausable, ReentrancyGuard {
     using SafeERC20 for IERC20;
 
     AggregatorV3Interface public oracle;
