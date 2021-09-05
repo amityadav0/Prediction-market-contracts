@@ -56,4 +56,40 @@ describe("Avax Prediction Market", function () {
       )
     ).to.be.revertedWith("Treasury fee too high");
   });
+
+  it("Should be pausable only by admin or operator", async function () {
+    const [_, admin, operator, newAcc] = await ethers.getSigners();
+
+    // fails
+    await expect(
+      avaxPredictionContract.connect(newAcc).pause()
+    ).to.be.revertedWith("Not operator/admin");
+
+    // passes
+    await avaxPredictionContract.connect(admin).pause();
+  });
+
+  it("Should reject if trying to pause an already paused market", async function () {
+    const [_, admin] = await ethers.getSigners();
+    await avaxPredictionContract.connect(admin).pause();
+
+    await expect(
+      avaxPredictionContract.connect(admin).pause()
+    ).to.be.revertedWith("Pausable: paused");
+  });
+
+  it("Should unpause an already paused market", async function () {
+    const [_, admin, operator] = await ethers.getSigners();
+    await avaxPredictionContract.connect(admin).pause();
+
+    // operator can pause but cannot "unpause"
+    await expect(
+      avaxPredictionContract.connect(operator).unpause()
+    ).to.be.revertedWith("Not admin");
+
+    // only admin can unpause
+    await avaxPredictionContract.connect(admin).unpause();
+  });
+
+
 });
