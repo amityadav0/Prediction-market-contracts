@@ -89,6 +89,8 @@ describe("Avax Prediction Market", function () {
 
     // only admin can unpause
     await avaxPredictionContract.connect(admin).unpause();
+    expect(await avaxPredictionContract.genesisLockOnce()).to.equal(false);
+    expect(await avaxPredictionContract.genesisStartOnce()).to.equal(false);
   });
 
 
