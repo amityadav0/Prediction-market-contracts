@@ -69,29 +69,31 @@ describe("Avax Prediction Market", function () {
     await avaxPredictionContract.connect(admin).pause();
   });
 
-  it("Should reject if trying to pause an already paused market", async function () {
-    const [_, admin] = await ethers.getSigners();
-    await avaxPredictionContract.connect(admin).pause();
+  describe("pause", async () => {
+    it("Should reject if trying to pause an already paused market", async function () {
+      const [_, admin] = await ethers.getSigners();
+      await avaxPredictionContract.connect(admin).pause();
 
-    await expect(
-      avaxPredictionContract.connect(admin).pause()
-    ).to.be.revertedWith("Pausable: paused");
-  });
+      await expect(
+        avaxPredictionContract.connect(admin).pause()
+      ).to.be.revertedWith("Pausable: paused");
+    });
 
-  it("Should unpause an already paused market", async function () {
-    const [_, admin, operator] = await ethers.getSigners();
-    await avaxPredictionContract.connect(admin).pause();
+    it("Should unpause an already paused market", async function () {
+      const [_, admin, operator] = await ethers.getSigners();
+      await avaxPredictionContract.connect(admin).pause();
 
-    // operator can pause but cannot "unpause"
-    await expect(
-      avaxPredictionContract.connect(operator).unpause()
-    ).to.be.revertedWith("Not admin");
+      // operator can pause but cannot "unpause"
+      await expect(
+        avaxPredictionContract.connect(operator).unpause()
+      ).to.be.revertedWith("Not admin");
 
-    // only admin can unpause
-    await avaxPredictionContract.connect(admin).unpause();
-    expect(await avaxPredictionContract.genesisLockOnce()).to.equal(false);
-    expect(await avaxPredictionContract.genesisStartOnce()).to.equal(false);
-  });
+      // only admin can unpause
+      await avaxPredictionContract.connect(admin).unpause();
+      expect(await avaxPredictionContract.genesisLockOnce()).to.equal(false);
+      expect(await avaxPredictionContract.genesisStartOnce()).to.equal(false);
+    });
+  })
 
 
 });
