@@ -58,7 +58,6 @@ describe("Avax Prediction Market", function () {
   });
 
   describe("pause", async () => {
-
     it("Should be pausable only by admin or operator", async function () {
       const [_, admin, operator, newAcc] = await ethers.getSigners();
 
@@ -96,5 +95,40 @@ describe("Avax Prediction Market", function () {
     });
   });
 
+  describe("setMinBetAmount", async () => {
+    it("should revert if not market not paused", async function () {
+      await expect(
+        avaxPredictionContract.setMinBetAmount(100)
+      ).to.be.revertedWith("Pausable: not paused");
+    });
 
+    it("should revert if msg.sender is not admin", async function () {
+      const [_, admin, addr] = await ethers.getSigners();
+      await avaxPredictionContract.connect(admin).pause();
+
+      await expect(
+        avaxPredictionContract.connect(addr).setMinBetAmount(0)
+      ).to.be.revertedWith("Not admin");
+    });
+
+    it("should revert if betAmount == 0", async function () {
+      const [_, admin] = await ethers.getSigners();
+      await avaxPredictionContract.connect(admin).pause();
+
+      await expect(
+        avaxPredictionContract.connect(admin).setMinBetAmount(0)
+      ).to.be.revertedWith("Must be superior to 0");
+    });
+
+    it("should set minBetAmount", async function () {
+      const [_, admin] = await ethers.getSigners();
+      await avaxPredictionContract.connect(admin).pause();
+
+      // set new amount as 211 wei
+      await avaxPredictionContract.connect(admin).setMinBetAmount(211);
+
+      // assert amount is updated in contract
+      expect(await avaxPredictionContract.minBetAmount()).to.equal(211);
+    });
+  });
 });
