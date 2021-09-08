@@ -1,0 +1,10 @@
+{
+  "avaxPredictionContract": "0x2eBfbd80D1866d4860da08B6586E68667baCCE1c",
+  "oracleAddress": "0x5498BB86BC934c8D34FDA08E81D444153d0D06aD",
+  "adminAddress": "0x37EC25be90301c8897f04570bA7A5BBdCbE1c6f3",
+  "interval": 300,
+  "bufferSeconds": 1000,
+  "minBetAmount": 10000,
+  "oracleUpdateAllowance": 1200,
+  "treasuryFee": 500
+}
