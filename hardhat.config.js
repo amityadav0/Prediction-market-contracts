@@ -18,15 +18,6 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
  */
 module.exports = {
   networks: {
-    binance: {
-      url: "https://data-seed-prebsc-1-s1.binance.org:8545/",
-      chainId: 97,
-      gasPrice: 20000000000,
-      accounts: ['69ca251a19064f103500412822a14b73ff73d4de4e2ca310bd9e1b599dbbb53c',
-      'e75c8e43573aa5a64452a741fbcdc424ffc83dc66af04520906d04ceef8dc24a',
-      'd07fa9bdb1c7abe353ae51681792d328a4749afee918dbdee58d61c715807d1c',
-      'f82106aeea22687c1414fe6b237a1941d58130b2d57bc39b32a2873a78d79fc9']
-    },
     avalanche: {
       url: "https://api.avax-test.network/ext/bc/C/rpc",
       chainId: 43113,
