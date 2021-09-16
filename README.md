@@ -2,6 +2,7 @@
 # Avax Price Prediction Market
 
 [*Avax Price Prediction Market*](https://focused-leavitt-899e39.netlify.app/) is a fun and simple decentralized prediction market.
+Video: https://drive.google.com/file/d/1_ppQIyVUL5th9LzxiYy52c1Nt1lK-mtF/view?usp=sharing
 
 ## Take part in market
 
