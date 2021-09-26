@@ -116,3 +116,6 @@ node_modules
 #Hardhat files
 cache
 artifacts
+
+#Cron stuff
+.cron-shell.sh.swp
