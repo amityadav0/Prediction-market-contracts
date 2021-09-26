@@ -74,14 +74,12 @@ async function main() {
     signer
   );
 
-  await sleep(12 * 1000); // sleep for 12s
+  //await sleep(12 * 1000); // sleep for 12s
   await execute(avaxPredictionContract);
 
-  /*
-    setInterval(async () => {
-      await execute(avaxPredictionContract);
-    }, (config.interval + 15) * 1000);
-  */
+  setInterval(async () => {
+    await execute(avaxPredictionContract);
+  }, (config.interval + 15) * 1000);
 }
 
 
