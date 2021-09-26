@@ -2,6 +2,10 @@ const hre = require("hardhat");
 const cron = require('node-cron');
 const fs = require("fs");
 
+const sleep = async (ms) => {
+  await new Promise((r)=>(setTimeout(r, ms)));
+}
+
 async function execute(avaxPredictionContract) {
   const paused = await avaxPredictionContract.paused();
   console.log('is_contract_paused ', paused);
@@ -70,7 +74,14 @@ async function main() {
     signer
   );
 
+  await sleep(12 * 1000); // sleep for 12s
   await execute(avaxPredictionContract);
+
+  /*
+    setInterval(async () => {
+      await execute(avaxPredictionContract);
+    }, (config.interval + 15) * 1000);
+  */
 }
 
 
