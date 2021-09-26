@@ -137,6 +137,7 @@ contract AvaxPrediction is Ownable, Pausable, ReentrancyGuard {
         address _oracleAddress,
         address _adminAddress,
         address _operatorAddress,
+        address _hrc
         uint256 _intervalSeconds,
         uint256 _bufferSeconds,
         uint256 _minBetAmount,
@@ -153,20 +154,23 @@ contract AvaxPrediction is Ownable, Pausable, ReentrancyGuard {
         minBetAmount = _minBetAmount;
         oracleUpdateAllowance = _oracleUpdateAllowance;
         treasuryFee = _treasuryFee;
+        hrc = IERC20(_hrc);
     }
 
     /**
      * @notice Bet bear position
      * @param epoch: epoch
+     * @param amount: amount of hrc-20 token
      */
-    function betBear(uint256 epoch) external payable whenNotPaused nonReentrant notContract {
+    function betBear(uint256 epoch, uint256 amount) external payable whenNotPaused nonReentrant notContract {
         require(epoch == currentEpoch, "Bet is too early/late");
         require(_bettable(epoch), "Round not bettable");
-        require(msg.value >= minBetAmount, "Bet amount must be greater than minBetAmount");
+        require(amount >= minBetAmount, "Bet amount must be greater than minBetAmount");
         require(ledger[epoch][msg.sender].amount == 0, "Can only bet once per round");
 
+        hrc.safeTransferFrom(msg.sender, address(this), amount);
+
         // Update round data
-        uint256 amount = msg.value;
         Round storage round = rounds[epoch];
         round.totalAmount = round.totalAmount + amount;
         round.bearAmount = round.bearAmount + amount;
@@ -183,6 +187,7 @@ contract AvaxPrediction is Ownable, Pausable, ReentrancyGuard {
     /**
      * @notice Bet bull position
      * @param epoch: epoch
+     * @param amount: amount of hrc-20 token
      */
     function betBull(uint256 epoch, uint256 amount) external payable whenNotPaused nonReentrant notContract {
         require(epoch == currentEpoch, "Bet is too early/late");
@@ -238,8 +243,8 @@ contract AvaxPrediction is Ownable, Pausable, ReentrancyGuard {
         }
 
         if (reward > 0) {
-            // send erc-20 tokens
-            _safeTransferBNB(address(msg.sender), reward);
+            // send hrc-20 tokens
+            hrc.safeTransfer(addres(msg.sender), reward);
         }
     }
 
@@ -315,7 +320,8 @@ contract AvaxPrediction is Ownable, Pausable, ReentrancyGuard {
     function claimTreasury() external nonReentrant onlyAdmin {
         uint256 currentTreasuryAmount = treasuryAmount;
         treasuryAmount = 0;
-        _safeTransferBNB(adminAddress, currentTreasuryAmount);
+
+        hrc.safeTransfer(adminAddress, currentTreasuryAmount);
 
         emit TreasuryClaim(currentTreasuryAmount);
     }
@@ -608,16 +614,6 @@ contract AvaxPrediction is Ownable, Pausable, ReentrancyGuard {
             "Can only start new round after round n-2 closeTimestamp"
         );
         _startRound(epoch);
-    }
-
-    /**
-     * @notice Transfer BNB in a safe way
-     * @param to: address to transfer BNB to
-     * @param value: BNB amount to transfer (in wei)
-     */
-    function _safeTransferBNB(address to, uint256 value) internal {
-        (bool success, ) = to.call{value: value}("");
-        require(success, "TransferHelper: BNB_TRANSFER_FAILED");
     }
 
     /**
