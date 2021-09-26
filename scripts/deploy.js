@@ -7,8 +7,8 @@ async function main() {
   const config = JSON.parse(fs.readFileSync("./config.json", "utf-8"));
 
   // We get the contract to deploy
-  const AvaxPrediction = await hre.ethers.getContractFactory("AvaxPrediction");
-  const avaxPredictionContract = await AvaxPrediction.deploy(
+  const HarmonyPrediction = await hre.ethers.getContractFactory("AvaxPrediction");
+  const harmonyPredictionContract = await HarmonyPrediction.deploy(
     config.oracleAddress,
     admin.address,
     admin.address, // admin == operator
@@ -19,13 +19,13 @@ async function main() {
     config.treasuryFee
   );
 
-  await avaxPredictionContract.deployed();
-  deployedContractAddress = avaxPredictionContract.address;
-  console.log('avaxPredictionContract deployed at: ', avaxPredictionContract.address);
+  await harmonyPredictionContract.deployed();
+  deployedContractAddress = harmonyPredictionContract.address;
+  console.log('harmonyPredictionContract deployed at: ', harmonyPredictionContract.address);
 
   // set admin and prediction contract address in config
   config.adminAddress = admin.address;
-  config.avaxPredictionContract = avaxPredictionContract.address;
+  config.harmonyPredictionContract = harmonyPredictionContract.address;
   fs.writeFileSync("./config.json", JSON.stringify(config, null, 2));
 }
 

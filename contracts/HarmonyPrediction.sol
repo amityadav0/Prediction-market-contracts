@@ -12,9 +12,9 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "./interfaces/AggregatorV3Interface.sol";
 
 /**
- * @title AvaxPrediction
+ * @title HarmonyPrediction
  */
-contract AvaxPrediction is Ownable, Pausable, ReentrancyGuard {
+contract HarmonyPrediction is Ownable, Pausable, ReentrancyGuard {
     using SafeERC20 for IERC20;
 
     AggregatorV3Interface public oracle;
@@ -299,7 +299,7 @@ contract AvaxPrediction is Ownable, Pausable, ReentrancyGuard {
         }
 
         if (reward > 0) {
-            _safeTransferAVAX(address(msg.sender), reward);
+            _safeTransferOne(address(msg.sender), reward);
         }
     }
 
@@ -378,7 +378,7 @@ contract AvaxPrediction is Ownable, Pausable, ReentrancyGuard {
     function claimTreasury() external nonReentrant onlyAdmin {
         uint256 currentTreasuryAmount = treasuryAmount;
         treasuryAmount = 0;
-        _safeTransferAVAX(adminAddress, currentTreasuryAmount);
+        _safeTransferOne(adminAddress, currentTreasuryAmount);
 
         emit TreasuryClaim(currentTreasuryAmount);
     }
@@ -721,13 +721,13 @@ contract AvaxPrediction is Ownable, Pausable, ReentrancyGuard {
     }
 
     /**
-     * @notice Transfer AVAX in a safe way
-     * @param to: address to transfer AVAX to
-     * @param value: AVAX amount to transfer (in wei)
+     * @notice Transfer One in a safe way
+     * @param to: address to transfer One to
+     * @param value: One amount to transfer (in wei)
      */
-    function _safeTransferAVAX(address to, uint256 value) internal {
+    function _safeTransferOne(address to, uint256 value) internal {
         (bool success, ) = to.call{value: value}("");
-        require(success, "TransferHelper: AVAX_TRANSFER_FAILED");
+        require(success, "TransferHelper: One_TRANSFER_FAILED");
     }
 
     /**

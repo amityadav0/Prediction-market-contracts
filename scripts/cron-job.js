@@ -2,30 +2,30 @@ const hre = require("hardhat");
 const cron = require('node-cron');
 const fs = require("fs");
 
-async function execute(avaxPredictionContract) {
-  const paused = await avaxPredictionContract.paused();
+async function execute(harmonyPredictionContract) {
+  const paused = await harmonyPredictionContract.paused();
   console.log('is_contract_paused ', paused);
 
-  const currentEpoch = await (await avaxPredictionContract.currentEpoch()).toNumber();
+  const currentEpoch = await (await harmonyPredictionContract.currentEpoch()).toNumber();
   console.log('currentEpoch ', currentEpoch);
 
   let skipped = false;
   if (!paused) {
-    const genesisStartOnce = await avaxPredictionContract.genesisStartOnce();
-    const genesisLockOnce = await avaxPredictionContract.genesisLockOnce();
+    const genesisStartOnce = await harmonyPredictionContract.genesisStartOnce();
+    const genesisLockOnce = await harmonyPredictionContract.genesisLockOnce();
     console.log('genesisStartOnce ', genesisStartOnce);
     console.log('genesisLockOnce ', genesisLockOnce);
 
     if (genesisStartOnce === false) {
       console.log('\nstarting genesis round...');
       try {
-        const tx = await avaxPredictionContract.genesisStartRound();
+        const tx = await harmonyPredictionContract.genesisStartRound();
         await tx.wait();
       } catch (error) {
         console.log('error ', error);
       }
 
-      const newEpoch = await (await avaxPredictionContract.currentEpoch()).toNumber();
+      const newEpoch = await (await harmonyPredictionContract.currentEpoch()).toNumber();
       console.log('Current epoch now: ', newEpoch);
       skipped = true;
     }
@@ -33,13 +33,13 @@ async function execute(avaxPredictionContract) {
     if (!skipped && genesisLockOnce === false) {
       console.log('\nlocking genesis round...');
       try {
-        const tx = await avaxPredictionContract.genesisLockRound();
+        const tx = await harmonyPredictionContract.genesisLockRound();
         await tx.wait();
       } catch (error) {
         console.log('error ', error);
       }
 
-      const newEpoch = await (await avaxPredictionContract.currentEpoch()).toNumber();
+      const newEpoch = await (await harmonyPredictionContract.currentEpoch()).toNumber();
       console.log('Current epoch now: ', newEpoch);
       skipped = true;
     }
@@ -47,13 +47,13 @@ async function execute(avaxPredictionContract) {
     if (!skipped && genesisStartOnce && genesisLockOnce) {
       console.log('\nExecuting round...');
       try {
-        const tx = await avaxPredictionContract.executeRound();
+        const tx = await harmonyPredictionContract.executeRound();
         await tx.wait();
       } catch (error) {
         console.log('error ', error);
       }
 
-      const newEpoch = await (await avaxPredictionContract.currentEpoch()).toNumber();
+      const newEpoch = await (await harmonyPredictionContract.currentEpoch()).toNumber();
       console.log('Current epoch now: ', newEpoch);
       skipped = true;
     }
@@ -63,16 +63,16 @@ async function main() {
   const config = JSON.parse(fs.readFileSync("./config.json", "utf-8"));
 
   const signer = await hre.ethers.provider.getSigner(config.adminAddress);
-  const avaxPredictionContract = await hre.ethers.getContractAt(
-    'AvaxPrediction',
-    config.avaxPredictionContract,
+  const harmonyPredictionContract = await hre.ethers.getContractAt(
+    'harmonyPrediction',
+    config.harmonyPredictionContract,
     signer
   );
 
-  await execute(avaxPredictionContract);
+  await execute(harmonyPredictionContract);
 
   setInterval(async () => {
-    await execute(avaxPredictionContract);
+    await execute(harmonyPredictionContract);
   }, (config.interval + 15) * 1000);
 }
 

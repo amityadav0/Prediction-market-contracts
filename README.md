@@ -1,26 +1,26 @@
 
-# Avax Price Prediction Market
+# Harmony Price Prediction Market
 
-[*Avax Price Prediction Market*](https://focused-leavitt-899e39.netlify.app/) is a fun and simple decentralized prediction market.
+[*Harmony Price Prediction Market*](https://focused-leavitt-899e39.netlify.app/) is a fun and simple decentralized prediction market.
 Video: https://drive.google.com/file/d/1_ppQIyVUL5th9LzxiYy52c1Nt1lK-mtF/view?usp=sharing
 
 ## Take part in market
 
 It's easy to take part:
 
-* Predict if the price of AVAX/USDT will be higher or lower than it was when the “LIVE” phase starts.
-* If you enter an “UP” position, and the AVAX/USDT “Closed Price” is higher than the “Locked Price” at the end of the 5 minute LIVE phase, you WIN! And if it’s lower, you lose.
-* If you enter a “DOWN” position, and the AVAX/USDT “Closed Price” is higher than the “Locked Price” at the end of the 5 minute LIVE phase, you LOSE! If it’s lower, you win.
+* Predict if the price of Harmony/USDT will be higher or lower than it was when the “LIVE” phase starts.
+* If you enter an “UP” position, and the Harmony/USDT “Closed Price” is higher than the “Locked Price” at the end of the 5 minute LIVE phase, you WIN! And if it’s lower, you lose.
+* If you enter a “DOWN” position, and the Harmony/USDT “Closed Price” is higher than the “Locked Price” at the end of the 5 minute LIVE phase, you LOSE! If it’s lower, you win.
 
 ## Guide
 
-Check [prediction-guide.md](./prediction-guide.md) for detailed walkthrough of using AVAX prediction market.
+Check [prediction-guide.md](./prediction-guide.md) for detailed walkthrough of using Harmony prediction market.
 
 ## Config
 
 The following config has been added to `config.json`:
-* *avaxPredictionContract*: address of deployed contract
-* *oracleAddress*: address of oracle (chainlink AVAX/USDT price feed)
+* *HarmonyPredictionContract*: address of deployed contract
+* *oracleAddress*: address of oracle (chainlink Harmony/USDT price feed)
 * *adminAddress*: address of admin (and operator) which is the controller
 * *interval*: interval of rounds (set to `30 min`)
 * *bufferSeconds*: timeperiod for admin/operator to execute rounds
