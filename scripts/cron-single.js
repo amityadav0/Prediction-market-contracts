@@ -2,6 +2,10 @@ const hre = require("hardhat");
 const cron = require('node-cron');
 const fs = require("fs");
 
+const sleep = async (ms) => {
+  await new Promise((r)=>(setTimeout(r, ms)));
+}
+
 async function execute(harmonyPredictionContract) {
   const paused = await harmonyPredictionContract.paused();
   console.log('is_contract_paused ', paused);
@@ -59,6 +63,7 @@ async function execute(harmonyPredictionContract) {
     }
   }
 }
+
 async function main() {
   const config = JSON.parse(fs.readFileSync("./config.json", "utf-8"));
 
@@ -69,19 +74,15 @@ async function main() {
     signer
   );
 
+  await sleep(12 * 1000); // sleep for 12s
   await execute(harmonyPredictionContract);
 
-  setInterval(async () => {
-    await execute(harmonyPredictionContract);
-  }, (config.interval + 15) * 1000);
+  /*
+    setInterval(async () => {
+      await execute(avaxPredictionContract);
+    }, (config.interval + 15) * 1000);
+  */
 }
 
 
-// We recommend this pattern to be able to use async/await everywhere
-// and properly handle errors.
 main()
-  // .then(() => process.exit(0))
-  // .catch((error) => {
-  //   console.error(error);
-  //   process.exit(1);
-  // });

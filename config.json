@@ -6,5 +6,5 @@
   "bufferSeconds": 7200,
   "minBetAmount": 10000,
   "oracleUpdateAllowance": 9700,
-  "treasuryFee": 500,
+  "treasuryFee": 500
 }
