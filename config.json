@@ -1,8 +1,8 @@
 {
-  "avaxPredictionContract": "0x8DeD8b053Aa84bAccB6adf736f1141C5091D7B0a",
+  "avaxPredictionContract": "0x28E77B668298a0B973f1426a98c379687025921d",
   "oracleAddress": "0x5498BB86BC934c8D34FDA08E81D444153d0D06aD",
   "adminAddress": "0x37EC25be90301c8897f04570bA7A5BBdCbE1c6f3",
-  "interval": 1800,
+  "interval": 300,
   "bufferSeconds": 7200,
   "minBetAmount": 10000,
   "oracleUpdateAllowance": 9700,
