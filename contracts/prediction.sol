@@ -39,6 +39,9 @@ contract AvaxPrediction is Ownable, Pausable, ReentrancyGuard {
 
     uint256 public constant MAX_TREASURY_FEE = 1000; // 10%
 
+    /// @notice Interface for the hrc-20 token
+    IERC20 public immutable hrc;
+
     mapping(uint256 => mapping(address => BetInfo)) public ledger;
     mapping(uint256 => Round) public rounds;
     mapping(address => uint256[]) public userRounds;
@@ -181,14 +184,15 @@ contract AvaxPrediction is Ownable, Pausable, ReentrancyGuard {
      * @notice Bet bull position
      * @param epoch: epoch
      */
-    function betBull(uint256 epoch) external payable whenNotPaused nonReentrant notContract {
+    function betBull(uint256 epoch, uint256 amount) external payable whenNotPaused nonReentrant notContract {
         require(epoch == currentEpoch, "Bet is too early/late");
         require(_bettable(epoch), "Round not bettable");
-        require(msg.value >= minBetAmount, "Bet amount must be greater than minBetAmount");
+        require(amount >= minBetAmount, "Bet amount must be greater than minBetAmount");
         require(ledger[epoch][msg.sender].amount == 0, "Can only bet once per round");
 
+        hrc.safeTransferFrom(msg.sender, address(this), amount);
+
         // Update round data
-        uint256 amount = msg.value;
         Round storage round = rounds[epoch];
         round.totalAmount = round.totalAmount + amount;
         round.bullAmount = round.bullAmount + amount;
@@ -234,6 +238,7 @@ contract AvaxPrediction is Ownable, Pausable, ReentrancyGuard {
         }
 
         if (reward > 0) {
+            // send erc-20 tokens
             _safeTransferBNB(address(msg.sender), reward);
         }
     }
