@@ -69,7 +69,7 @@ async function main() {
 
   const signer = await hre.ethers.provider.getSigner(config.adminAddress);
   const harmonyPredictionContract = await hre.ethers.getContractAt(
-    'harmonyPrediction',
+    'HarmonyPrediction',
     config.harmonyPredictionContract,
     signer
   );

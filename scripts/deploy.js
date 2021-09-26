@@ -7,7 +7,7 @@ async function main() {
   const config = JSON.parse(fs.readFileSync("./config.json", "utf-8"));
 
   // We get the contract to deploy
-  const HarmonyPrediction = await hre.ethers.getContractFactory("AvaxPrediction");
+  const HarmonyPrediction = await hre.ethers.getContractFactory("HarmonyPrediction");
   const harmonyPredictionContract = await HarmonyPrediction.deploy(
     config.oracleAddress,
     admin.address,
