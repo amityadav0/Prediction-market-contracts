@@ -23,7 +23,7 @@ module.exports = {
       chainId: 1666700000,
       gas: 3100000,
       gasPrice: 76000000000,
-      accounts: []
+      accounts: [ '69ca251a19064f103500412822a14b73ff73d4de4e2ca310bd9e1b599dbbb53c' ]
     },
     avalanche: {
       url: "https://api.avax-test.network/ext/bc/C/rpc",
