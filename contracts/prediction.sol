@@ -137,7 +137,7 @@ contract AvaxPrediction is Ownable, Pausable, ReentrancyGuard {
         address _oracleAddress,
         address _adminAddress,
         address _operatorAddress,
-        address _hrc
+        address _hrc,
         uint256 _intervalSeconds,
         uint256 _bufferSeconds,
         uint256 _minBetAmount,
@@ -244,7 +244,7 @@ contract AvaxPrediction is Ownable, Pausable, ReentrancyGuard {
 
         if (reward > 0) {
             // send hrc-20 tokens
-            hrc.safeTransfer(addres(msg.sender), reward);
+            hrc.safeTransfer(address(msg.sender), reward);
         }
     }
 
