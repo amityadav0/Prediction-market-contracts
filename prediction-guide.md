@@ -2,7 +2,7 @@
 
 ![](./.gitbook/assets/docs-masthead-4-.png)
 
-Playing in Harmony Prediction lets you test your foresight to earn rewards. Use your market knowledge or gut feeling to predict if the Harmony/USDT price will go up or down in the near future. Get it right and you’ll collect a share of the round’s prize pool!
+Playing in Harmony Prediction lets you test your foresight to earn rewards. Use your market knowledge or gut feeling to predict if the ONE/USDT price will go up or down in the near future. Get it right and you’ll collect a share of the round’s prize pool!
 
 ## Making a prediction for the next round
 
@@ -30,7 +30,7 @@ Each will have a different reward multiplier. The multiplier will change over ti
 
 We'll choose **Enter UP** for this example.
 
-2. A new window will open. In the window, you'll see "Commit" to commit Harmony for your prediction. Type the amount of Harmony you would like to commit to your prediction for this round in the field. You can also use the bunny slider or click the percent buttons if you prefer.
+2. A new window will open. In the window, you'll see "Commit" to commit ONE for your prediction. Type the amount of ONE you would like to commit to your prediction for this round in the field. You can also use the bunny slider or click the percent buttons if you prefer.
 
 ![](./.gitbook/assets/image%20%28132%29.png)
 
@@ -92,11 +92,11 @@ If you want to see the results for rounds you've entered that are older than a f
 
 ![](./.gitbook/assets/image%20%2815%29.png)
 
-2. A new window will appear showing the amount of Harmony you can collect with a **Confirm** button. Click the button and confirm the action in your wallet.
+2. A new window will appear showing the amount of ONE you can collect with a **Confirm** button. Click the button and confirm the action in your wallet.
 
 ![](./.gitbook/assets/image%20%28113%29.png)
 
-Your Harmony winnings will now be in your wallet.
+Your ONE winnings will now be in your wallet.
 
 ## Collecting winnings from older rounds
 
@@ -110,12 +110,12 @@ Sometimes you may be away from PancakeSwap's Prediction page for a while, or may
 
 ![](./.gitbook/assets/image%20%2811%29.png)
 
-3. A new window will appear showing the amount of Harmony you can collect with a **Confirm** button. Click the button and confirm the action in your wallet.
+3. A new window will appear showing the amount of ONE you can collect with a **Confirm** button. Click the button and confirm the action in your wallet.
 
 ![](./.gitbook/assets/image%20%28113%29.png)
 
-Your Harmony winnings will now be in your wallet.
-Harmony
+Your ONE winnings will now be in your wallet.
+ONE
 ## Viewing historic profit and loss data
 
 If you'd like to see how you've done overall in Prediction, you can view PNL \(Profit and Loss\) data whenever you'd like.
