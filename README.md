@@ -1,8 +1,10 @@
 
 # Harmony Price Prediction Market
 
-[*Harmony Price Prediction Market*](https://blissful-wright-9add2f.netlify.app/prediction) is a fun and simple decentralized prediction market.
+[*Harmony Price Prediction Market*](https://blissful-wright-9add2f.netlify.app/prediction) is a fun and simple decentralized prediction market using `chainlink` oracle.
+
 User Interface: https://blissful-wright-9add2f.netlify.app/prediction
+
 Video: https://drive.google.com/file/d/1_ppQIyVUL5th9LzxiYy52c1Nt1lK-mtF/view?usp=sharing
 
 # Dapp
