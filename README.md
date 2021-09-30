@@ -5,6 +5,15 @@
 User Interface: https://blissful-wright-9add2f.netlify.app/prediction
 Video: https://drive.google.com/file/d/1_ppQIyVUL5th9LzxiYy52c1Nt1lK-mtF/view?usp=sharing
 
+# Dapp
+
+#![pred-1](https://user-images.githubusercontent.com/26249903/135519747-54f5df89-2192-42af-b065-45f0f09f0ec6.png)
+
+![pred-2](https://user-images.githubusercontent.com/26249903/135519769-11882e79-653e-4c40-a1ff-f48bc0573768.png)
+
+![pred-3](https://user-images.githubusercontent.com/26249903/135519778-c6190b46-de52-4f09-bbff-184f4cc26bbd.png)
+
+
 ## Take part in market
 
 It's easy to take part:
