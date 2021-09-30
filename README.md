@@ -1,7 +1,8 @@
 
 # Harmony Price Prediction Market
 
-[*Harmony Price Prediction Market*](https://focused-leavitt-899e39.netlify.app/) is a fun and simple decentralized prediction market.
+[*Harmony Price Prediction Market*](https://unruffled-kowalevski-9b54f8.netlify.app/prediction) is a fun and simple decentralized prediction market.
+User Interface: https://unruffled-kowalevski-9b54f8.netlify.app/prediction
 Video: https://drive.google.com/file/d/1_ppQIyVUL5th9LzxiYy52c1Nt1lK-mtF/view?usp=sharing
 
 ## Take part in market
@@ -31,11 +32,12 @@ The network config is set in `hardhat.config.js` (in networks.avalanche)
 
 # UI
 
-Frontend code for this project can be found [here](https://github.com/amityadav0/Prediction-market-ui).
-Dapp can be found at [https://focused-leavitt-899e39.netlify.app/](https://focused-leavitt-899e39.netlify.app/).
+Frontend code for this project can be found [here](https://github.com/amityadav0/Prediction-market-ui/tree/harmony).
+Dapp can be found at [https://unruffled-kowalevski-9b54f8.netlify.app/prediction](https://unruffled-kowalevski-9b54f8.netlify.app/prediction).
 
 ## RoadMap
 
 UI is referenced from [pancakeswap.finance](https://pancakeswap.finance/), and our focus has been on contracts integration and a smooth flow of an automated price prediction market.
 
-In the future we plan to improve the existing UI and launch a complete dapp on the Avalanche Mainnet. We would love to have a frontend developer to contribute to this project.
+- Integrate HRC-20 support to UI, we have contracts for HRC20 tokens price prediction.
+- Enhance UI
