@@ -1,8 +1,8 @@
 
 # Harmony Price Prediction Market
 
-[*Harmony Price Prediction Market*](https://unruffled-kowalevski-9b54f8.netlify.app/prediction) is a fun and simple decentralized prediction market.
-User Interface: https://unruffled-kowalevski-9b54f8.netlify.app/prediction
+[*Harmony Price Prediction Market*](https://blissful-wright-9add2f.netlify.app/prediction) is a fun and simple decentralized prediction market.
+User Interface: https://blissful-wright-9add2f.netlify.app/prediction
 Video: https://drive.google.com/file/d/1_ppQIyVUL5th9LzxiYy52c1Nt1lK-mtF/view?usp=sharing
 
 ## Take part in market
@@ -33,7 +33,7 @@ The network config is set in `hardhat.config.js` (in networks.avalanche)
 # UI
 
 Frontend code for this project can be found [here](https://github.com/amityadav0/Prediction-market-ui/tree/harmony).
-Dapp can be found at [https://unruffled-kowalevski-9b54f8.netlify.app/prediction](https://unruffled-kowalevski-9b54f8.netlify.app/prediction).
+Dapp can be found at [https://blissful-wright-9add2f.netlify.app/prediction](https://blissful-wright-9add2f.netlify.app/prediction).
 
 ## RoadMap
 
