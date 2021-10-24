@@ -495,6 +495,14 @@ contract HarmonyPrediction is Ownable, Pausable, ReentrancyGuard {
         emit TokenRecovery(_token, _amount);
     }
 
+    function getBlockTimestamp()
+        public
+        view
+        returns (uint256)
+    {
+        return block.timestamp;
+    }
+
     /**
      * @notice Set admin address
      * @dev Callable by owner
@@ -757,6 +765,12 @@ contract HarmonyPrediction is Ownable, Pausable, ReentrancyGuard {
             rounds[epoch].lockTimestamp != 0 &&
             block.timestamp > rounds[epoch].startTimestamp &&
             block.timestamp < rounds[epoch].lockTimestamp;
+    }
+
+    function getLatestOracleRounds() public view returns (uint80, uint256) {
+        (uint80 roundId, , , , ) = oracle
+            .latestRoundData();
+        return (roundId, oracleLatestRoundId);
     }
 
     /**
