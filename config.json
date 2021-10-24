@@ -1,8 +1,8 @@
 {
-  "harmonyPredictionContract": "0x883A84faE0FAD16711588CA72a8DACD56De3Aa55",
+  "harmonyPredictionContract": "0xE96A5e632801fE9C07CEe3B8368A37daa3B76D2a",
   "oracleAddress": "0xcEe686F89bc0dABAd95AEAAC980aE1d97A075FAD",
-  "adminAddress": "0xa4c384c151ab32258A3e5216465725edEa6e5a11",
-  "interval": 1800,
+  "adminAddress": "0x37EC25be90301c8897f04570bA7A5BBdCbE1c6f3",
+  "interval": 720,
   "bufferSeconds": 7200,
   "minBetAmount": 10000,
   "oracleUpdateAllowance": 9700,
