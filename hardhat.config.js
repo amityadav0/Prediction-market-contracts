@@ -1,5 +1,5 @@
 require("@nomiclabs/hardhat-waffle");
-
+const secret = require('./secret.json');
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
 task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
@@ -23,7 +23,7 @@ module.exports = {
       chainId: 1666700000,
       gas: 3100000,
       gasPrice: 76000000000,
-      accounts: [ '69ca251a19064f103500412822a14b73ff73d4de4e2ca310bd9e1b599dbbb53c' ]
+      accounts: [secret.key]
     },
     avalanche: {
       url: "https://api.avax-test.network/ext/bc/C/rpc",

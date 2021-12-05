@@ -94,7 +94,6 @@ async function main() {
   // await sleep(12 * 1000); // sleep for 12s
   await execute(harmonyPredictionContract);
 
-
   setInterval(async () => {
     await execute(harmonyPredictionContract);
   }, (config.interval + 15) * 1000);
