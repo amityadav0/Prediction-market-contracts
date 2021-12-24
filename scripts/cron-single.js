@@ -23,61 +23,68 @@ const printTs = async (harmonyPredictionContract) => {
 async function execute(harmonyPredictionContract) {
   const paused = await harmonyPredictionContract.paused();
   console.log('is_contract_paused ', paused);
-
+  if(paused) {
+    await harmonyPredictionContract.unpause();
+    console.log("Contract unpaused!!");
+  }
   const currentEpoch = await (await harmonyPredictionContract.currentEpoch()).toNumber();
   console.log('currentEpoch ', currentEpoch);
 
   let skipped = false;
-  if (!paused) {
-    const genesisStartOnce = await harmonyPredictionContract.genesisStartOnce();
-    const genesisLockOnce = await harmonyPredictionContract.genesisLockOnce();
-    console.log('genesisStartOnce ', genesisStartOnce);
-    console.log('genesisLockOnce ', genesisLockOnce);
+  const genesisStartOnce = await harmonyPredictionContract.genesisStartOnce();
+  const genesisLockOnce = await harmonyPredictionContract.genesisLockOnce();
+  console.log('genesisStartOnce ', genesisStartOnce);
+  console.log('genesisLockOnce ', genesisLockOnce);
 
-    if (genesisStartOnce === false) {
-      console.log('\nstarting genesis round...');
-      try {
-        await printTs(harmonyPredictionContract);
-        const tx = await harmonyPredictionContract.genesisStartRound();
-        await tx.wait();
-      } catch (error) {
-        console.log('error ', error);
-      }
-
-      const newEpoch = await (await harmonyPredictionContract.currentEpoch()).toNumber();
-      console.log('Current epoch now: ', newEpoch);
-      skipped = true;
+  if (genesisStartOnce === false) {
+    console.log('\nstarting genesis round...');
+    try {
+      await printTs(harmonyPredictionContract);
+      const tx = await harmonyPredictionContract.genesisStartRound();
+      await tx.wait();
+    } catch (error) {
+      console.log('error ', error);
+      await harmonyPredictionContract.pause();
+      console.log("Contract Paused!!");
     }
 
-    if (!skipped && genesisLockOnce === false) {
-      console.log('\nlocking genesis round...');
-      try {
-        await printTs(harmonyPredictionContract);
-        const tx = await harmonyPredictionContract.genesisLockRound();
-        await tx.wait();
-      } catch (error) {
-        console.log('error ', error);
-      }
+    const newEpoch = await (await harmonyPredictionContract.currentEpoch()).toNumber();
+    console.log('Current epoch now: ', newEpoch);
+    skipped = true;
+  }
 
-      const newEpoch = await (await harmonyPredictionContract.currentEpoch()).toNumber();
-      console.log('Current epoch now: ', newEpoch);
-      skipped = true;
+  if (!skipped && genesisLockOnce === false) {
+    console.log('\nlocking genesis round...');
+    try {
+      await printTs(harmonyPredictionContract);
+      const tx = await harmonyPredictionContract.genesisLockRound();
+      await tx.wait();
+    } catch (error) {
+      console.log('error ', error);
+      await harmonyPredictionContract.pause();
+      console.log("Contract Paused!!");
     }
 
-    if (!skipped && genesisStartOnce && genesisLockOnce) {
-      console.log('\nExecuting round...');
-      try {
-        await printTs(harmonyPredictionContract);
-        const tx = await harmonyPredictionContract.executeRound();
-        await tx.wait();
-      } catch (error) {
-        console.log('error ', error);
-      }
+    const newEpoch = await (await harmonyPredictionContract.currentEpoch()).toNumber();
+    console.log('Current epoch now: ', newEpoch);
+    skipped = true;
+  }
 
-      const newEpoch = await (await harmonyPredictionContract.currentEpoch()).toNumber();
-      console.log('Current epoch now: ', newEpoch);
-      skipped = true;
+  if (!skipped && genesisStartOnce && genesisLockOnce) {
+    console.log('\nExecuting round...');
+    try {
+      await printTs(harmonyPredictionContract);
+      const tx = await harmonyPredictionContract.executeRound();
+      await tx.wait();
+    } catch (error) {
+      console.log('error ', error);
+      await harmonyPredictionContract.pause();
+      console.log("Contract Paused!!");
     }
+
+    const newEpoch = await (await harmonyPredictionContract.currentEpoch()).toNumber();
+    console.log('Current epoch now: ', newEpoch);
+    skipped = true;
   }
 }
 
