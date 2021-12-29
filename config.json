@@ -1,7 +1,7 @@
 {
-  "harmonyPredictionContract": "0xa9568Eb7ac33b196fF2181bff3568CDdC432B7B9",
+  "harmonyPredictionContract": "0xE4eB5f28F4b99F82e78a606bF41111fce4974C8b",
   "oracleAddress": "0xdCD81FbbD6c4572A69a534D8b8152c562dA8AbEF",
-  "adminAddress": "0x38D015c0b984A0EfBBcC506701bD6a40C407F288",
+  "adminAddress": "0x99419861b0722D9F1581F786f180048C3B3e1400",
   "operatorAddress": "0xC8dE4e0D72d4905d13d387Ab566991E99AD57147",
   "interval": 1200,
   "bufferSeconds": 60,
