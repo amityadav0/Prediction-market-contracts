@@ -18,6 +18,13 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
  */
 module.exports = {
   networks: {
+    harmonyMainnet: {
+      url: "https://api.harmony.one",
+      chainId: 1666600000,
+      gas: 3100000,
+      gasPrice: 76000000000,
+      accounts: [secret.owner]
+    },
     harmony: {
       url: "https://api.s0.b.hmny.io",
       chainId: 1666700000,
